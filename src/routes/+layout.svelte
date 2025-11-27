@@ -19,22 +19,6 @@
 </footer>
 
 <style>
-  footer {
-		padding: 1em;
-	}
-	@media only screen and (min-width: 600px) {
-		footer {
-			padding-left: var(--tablet-padding);
-			padding-right: var(--tablet-padding);
-		}
-	}
-	@media only screen and (min-width: 1000px) {
-		footer {
-			padding-left: var(--desktop-padding);
-			padding-right: var(--desktop-padding);
-		}
-	}
-
 	footer {
 		background-color: #ddd;
 	}

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Fa from 'svelte-fa'
-  import { faGithub } from '@fortawesome/free-brands-svg-icons'
+  import { faCircleQuestion, faQuestion } from '@fortawesome/free-solid-svg-icons'
 
   import Blanchor from '$lib/Blanchor.svelte';
 	import { onMount } from 'svelte';
@@ -38,16 +38,21 @@
   $effect(() => {ready && localStorage.setItem("starterPercent",  starterPercent.toString())});
   $effect(() => {ready && localStorage.setItem("starterHydration",starterHydration.toString())});
   $effect(() => {ready && localStorage.setItem("saltPercent",     saltPercent.toString())});
+
+  let showTotalHydrationExp = $state(false)
+  let showStarterPercentExp = $state(false)
+  let showStarterHydrationExp = $state(false)
+  let showSaltPercentExp = $state(false)
 </script>
 
 <main>
   <section>
     <div>
-      <h1>🍞 Sourdough Ratios Calculator</h1>
+      <h1>🍞 Sourdough Calculator 🧮</h1>
 
       <div id="main-flex">
         <div>
-          <h2>Ratios</h2>
+          <h3>Ratios</h3>
 
           <div class="row">
             <label for="total-grams-flour">🌾 Total Grams of Flour</label>
@@ -55,29 +60,58 @@
           </div>
 
           <div class="row" style="margin-bottom:0;">
-            <label for="hydration">💧 Total Hydration %</label>
+            <div style="display:flex;">
+              <label for="hydration">💧 Total Hydration %</label>
+              <span onclick={() => showTotalHydrationExp=!showTotalHydrationExp}><Fa icon={faCircleQuestion}/></span>
+            </div>
+
             <input id="hydration" type="number" bind:value={totalHydration} step="1" min=50 max=100/>
           </div>
+          {#if showTotalHydrationExp}
+            <p>How much total water you add, relative to the total amount of flour (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
+          {/if}
           <p style="margin-top:0">(I like <button class="hydration-suggestion" onclick={() => totalHydration = 70}>70%</button> for AP, <button class="hydration-suggestion" onclick={() => totalHydration = 85}>85%</button> for whole wheat)</p>
 
           <div class="row">
-            <label for="hydration">🫙 Starter %</label>
+            <div style="display:flex;">
+              <label for="hydration">🫙 Starter %</label>
+              <span onclick={() => showStarterPercentExp=!showStarterPercentExp}><Fa icon={faCircleQuestion}/></span>
+            </div>
             <input id="hydration" type="number" bind:value={starterPercent} step="1" min=1 max=99/>
           </div>
+          {#if showStarterPercentExp}
+            <p>How much starter you add, relative to the total amount of flour (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
+          {/if}
 
           <div class="row">
-            <label for="hydration">💧 Starter Hydration %</label>
+            <div style="display:flex;">
+              <label for="hydration">💧 Starter Hydration %</label>
+              <span onclick={() => showStarterHydrationExp=!showStarterHydrationExp}><Fa icon={faCircleQuestion}/></span>
+            </div>
+
             <input id="hydration" type="number" bind:value={starterHydration} step="1" min=25 max=200/>
           </div>
+          {#if showStarterHydrationExp}
+            <p>How much water you add <i>to your starter</i>, relative to how much flour you add <i>to your starter</i> (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
+          {/if}
+
+          <br/>
 
           <div class="row">
-            <label for="hydration">🧂 Salt %</label>
+            <div style="display:flex;">
+              <label for="hydration">🧂 Salt %</label>
+              <span onclick={() => showSaltPercentExp=!showSaltPercentExp}><Fa icon={faCircleQuestion}/></span>
+            </div>
+
             <input id="hydration" type="number" bind:value={saltPercent} step="0.1" min=0 max=30/>
           </div>
+          {#if showSaltPercentExp}
+            <p>How much salt you add, relative to the total amount of flour (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
+          {/if}
         </div>
 
         <div>
-          <h2>Recipe</h2>
+          <h3>Recipe</h3>
 
           <p><b>Step 1: Hydration</b></p>
           <p class="flex"><span>🌾 Flour to add:</span> <b>{Math.round(outputGramsFlourToAdd)}g</b></p>
@@ -127,10 +161,6 @@
     input {
       margin-bottom: 0;
     }
-  }
-
-  label {
-    font-weight: bold;
   }
 
   .hydration-suggestion {

@@ -1,4 +1,10 @@
-# sv
+# Sourdough Calculator
+
+Calculate all the ratios for your sourdough
+
+https://harryli0088.github.io/sourdough-calculator/
+
+## sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
