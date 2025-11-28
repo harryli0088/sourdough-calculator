@@ -74,10 +74,10 @@
 
           <div class="row">
             <div style="display:flex;">
-              <label for="hydration">🫙 Starter %</label>
+              <label for="starter-percentage">🫙 Starter %</label>
               <span onclick={() => showStarterPercentExp=!showStarterPercentExp}><Fa icon={faCircleQuestion}/></span>
             </div>
-            <input id="hydration" type="number" bind:value={starterPercent} step="1" min=1 max=99/>
+            <input id="starter-percentage" type="number" bind:value={starterPercent} step="1" min=1 max=99/>
           </div>
           {#if showStarterPercentExp}
             <p>How much starter you add, relative to the total amount of flour (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
@@ -85,11 +85,11 @@
 
           <div class="row">
             <div style="display:flex;">
-              <label for="hydration">💧 Starter Hydration %</label>
+              <label for="starter-hydration">💧 Starter Hydration %</label>
               <span onclick={() => showStarterHydrationExp=!showStarterHydrationExp}><Fa icon={faCircleQuestion}/></span>
             </div>
 
-            <input id="hydration" type="number" bind:value={starterHydration} step="1" min=25 max=200/>
+            <input id="starter-hydration" type="number" bind:value={starterHydration} step="1" min=25 max=200/>
           </div>
           {#if showStarterHydrationExp}
             <p>How much water you add <i>to your starter</i>, relative to how much flour you add <i>to your starter</i> (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
@@ -99,11 +99,11 @@
 
           <div class="row">
             <div style="display:flex;">
-              <label for="hydration">🧂 Salt %</label>
+              <label for="salt">🧂 Salt %</label>
               <span onclick={() => showSaltPercentExp=!showSaltPercentExp}><Fa icon={faCircleQuestion}/></span>
             </div>
 
-            <input id="hydration" type="number" bind:value={saltPercent} step="0.1" min=0 max=30/>
+            <input id="salt" type="number" bind:value={saltPercent} step="0.1" min=0 max=30/>
           </div>
           {#if showSaltPercentExp}
             <p>How much salt you add, relative to the total amount of flour (aka <Blanchor href="https://en.wikipedia.org/wiki/Baker_percentage">Baker's percentage</Blanchor>).</p>
